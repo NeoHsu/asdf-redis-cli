@@ -2,8 +2,8 @@
 
 set -euo pipefail
 
-# TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for redis-cli.
-GH_REPO="https://github.com/NeoHsu/asdf-redis-cli"
+# this is the correct GitHub homepage where releases can be downloaded for redis-cli.
+GH_REPO="https://github.com/redis/redis"
 TOOL_NAME="redis-cli"
 TOOL_TEST="redis-cli --help"
 
@@ -27,11 +27,10 @@ sort_versions() {
 list_github_tags() {
   git ls-remote --tags --refs "$GH_REPO" |
     grep -o 'refs/tags/.*' | cut -d/ -f3- |
-    sed 's/^v//' # NOTE: You might want to adapt this sed to remove non-version strings from tags
+    sed 's/^v//' | grep '^[0-9]' # NOTE: You might want to adapt this sed to remove non-version strings from tags
 }
 
 list_all_versions() {
-  # TODO: Adapt this. By default we simply list the tag names from GitHub releases.
   # Change this function if redis-cli has other means of determining installable versions.
   list_github_tags
 }
@@ -40,9 +39,7 @@ download_release() {
   local version filename url
   version="$1"
   filename="$2"
-
-  # TODO: Adapt the release URL convention for redis-cli
-  url="$GH_REPO/archive/v${version}.tar.gz"
+  url="http://download.redis.io/releases/redis-${version}.tar.gz"
 
   echo "* Downloading $TOOL_NAME release $version..."
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
@@ -58,10 +55,9 @@ install_version() {
   fi
 
   (
-    mkdir -p "$install_path"
-    cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
+    mkdir -p "$install_path"/bin
+    cp -r "$ASDF_DOWNLOAD_PATH"/src/redis-cli "$install_path"/bin/
 
-    # TODO: Asert redis-cli executable exists.
     local tool_cmd
     tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
     test -x "$install_path/bin/$tool_cmd" || fail "Expected $install_path/bin/$tool_cmd to be executable."
