@@ -2,7 +2,7 @@
 
 # asdf-redis-cli ![Build](https://github.com/NeoHsu/asdf-redis-cli/workflows/Build/badge.svg) ![Lint](https://github.com/NeoHsu/asdf-redis-cli/workflows/Lint/badge.svg)
 
-[redis-cli](https://redis.io/) plugin for the [asdf version manager](https://asdf-vm.com).
+[redis-cli](https://redis.io/topics/rediscli) plugin for the [asdf version manager](https://asdf-vm.com).
 
 </div>
 
@@ -17,7 +17,6 @@
 # Dependencies
 
 - `bash`, `curl`, `tar`: generic POSIX utilities.
-- `SOME_ENV_VAR`: set this environment variable in your shell config to load the correct version of tool x.
 
 # Install
 
