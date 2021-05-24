@@ -5,7 +5,7 @@ set -euo pipefail
 # this is the correct GitHub homepage where releases can be downloaded for redis-cli.
 GH_REPO="https://github.com/redis/redis"
 TOOL_NAME="redis-cli"
-TOOL_TEST="redis-cli --help"
+TOOL_TEST="redis-cli --version"
 
 fail() {
   echo -e "asdf-$TOOL_NAME: $*"

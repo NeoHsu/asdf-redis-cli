@@ -42,7 +42,7 @@ asdf install redis-cli latest
 asdf global redis-cli latest
 
 # Now redis-cli commands are available
-redis-cli --help
+redis-cli --version
 ```
 
 Check [asdf](https://github.com/asdf-vm/asdf) readme for more instructions on how to
