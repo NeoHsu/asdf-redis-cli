@@ -6,6 +6,10 @@
 
 </div>
 
+## Build History
+
+[![Build history](https://buildstats.info/github/chart/NeoHsu/asdf-redis-cli?branch=master)](https://github.com/NeoHsu/asdf-redis-cli/actions)
+
 # Contents
 
 - [Dependencies](#dependencies)
