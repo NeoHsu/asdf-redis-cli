@@ -24,15 +24,11 @@ sort_versions() {
     LC_ALL=C sort -t. -k 1,1 -k 2,2n -k 3,3n -k 4,4n -k 5,5n | awk '{print $2}'
 }
 
-list_github_tags() {
-  git ls-remote --tags --refs "$GH_REPO" |
-    grep -o 'refs/tags/.*' | cut -d/ -f3- |
-    sed 's/^v//' | grep '^[0-9]' # NOTE: You might want to adapt this sed to remove non-version strings from tags
-}
-
 list_all_versions() {
-  # Change this function if redis-cli has other means of determining installable versions.
-  list_github_tags
+  curl -s http://download.redis.io/releases/ |
+    grep -o 'href="redis-.*\.tar\.gz"' |
+    sed 's/href="redis-//' |
+    sed 's/\.tar\.gz"//'
 }
 
 download_release() {
