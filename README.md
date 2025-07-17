@@ -1,26 +1,21 @@
 <div align="center">
 
-# asdf-redis-cli ![Build](https://github.com/NeoHsu/asdf-redis-cli/workflows/Build/badge.svg) ![Lint](https://github.com/NeoHsu/asdf-redis-cli/workflows/Lint/badge.svg)
+# asdf-redis-cli [![Build](https://github.com/NeoHsu/asdf-redis-cli/actions/workflows/build.yml/badge.svg)](https://github.com/NeoHsu/asdf-redis-cli/actions/workflows/build.yml) [![Lint](https://github.com/NeoHsu/asdf-redis-cli/actions/workflows/lint.yml/badge.svg)](https://github.com/NeoHsu/asdf-redis-cli/actions/workflows/lint.yml)
 
 [redis-cli](https://redis.io/topics/rediscli) plugin for the [asdf version manager](https://asdf-vm.com).
 
 </div>
 
-# Build History
-
-[![Build history](https://buildstats.info/github/chart/NeoHsu/asdf-redis-cli?branch=master)](https://github.com/NeoHsu/asdf-redis-cli/actions)
-
 # Contents
 
 - [Dependencies](#dependencies)
 - [Install](#install)
-- [Why?](#why)
 - [Contributing](#contributing)
 - [License](#license)
 
 # Dependencies
 
-- `bash`, `curl`, `tar`: generic POSIX utilities.
+- `bash`, `curl`, `tar`, and [POSIX utilities](https://pubs.opengroup.org/onlinepubs/9699919799/idx/utilities.html).
 
 # Install
 
@@ -54,6 +49,11 @@ install & manage versions.
 # Contributing
 
 Contributions of any kind welcome! See the [contributing guide](contributing.md).
+
+Testing Locally:
+```shell
+asdf plugin test redis-cli https://github.com/NeoHsu/asdf-redis-cli.git "redis-cli --version"
+```
 
 [Thanks goes to these contributors](https://github.com/NeoHsu/asdf-redis-cli/graphs/contributors)!
 
