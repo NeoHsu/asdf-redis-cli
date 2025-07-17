@@ -1,27 +1,24 @@
 name: Lint
+
 on:
-  pull_request:
-    paths-ignore:
-      - "**.md"
   push:
-    paths-ignore:
-      - "**.md"
+    branches:
+      - main
+  pull_request:
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Run ShellCheck
-        run: shellcheck -x bin/*
+      - uses: actions/checkout@v4
+      - uses: asdf-vm/actions/install@v3
+      - run: scripts/lint.bash
 
-  format:
-    runs-on: macos-latest
+  actionlint:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Install shfmt
-        run: brew install shfmt
-      - name: Run shfmt
-        run: shfmt -d -i 2 -ci .
+      - uses: actions/checkout@v4
+      - name: Check workflow files
+        uses: docker://rhysd/actionlint:1.6.23
+        with:
+          args: -color
