@@ -8,4 +8,3 @@ shfmt --language-dialect bash --write \
 # format the template/
 shfmt --language-dialect bash --write \
 	template/**/*
-

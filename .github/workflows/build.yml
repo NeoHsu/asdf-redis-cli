@@ -3,20 +3,32 @@ name: Build
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
 
 jobs:
   plugin_test:
     name: asdf plugin test
     strategy:
-      matrix:
-        os:
-          - ubuntu-latest
-          - macos-latest
-    runs-on: ${{ matrix.os }}
+          fail-fast: false
+          matrix:
+            container:
+              - alpine:latest
+              - ubuntu:latest
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: ${{ matrix.container }}
     steps:
-      - name: asdf_plugin_test
-        uses: asdf-vm/actions/plugin-test@v4
+      - name: Install dependencies
+        run: |
+          if [ -f /etc/alpine-release ]; then
+            apk add --no-cache curl bash git
+          elif [ -f /etc/debian_version ]; then
+            apt-get update && apt-get install -y curl bash git
+          fi
+      - uses: asdf-vm/actions/plugin-test@v4
         with:
           command: redis-cli --version
+          asdf_branch: master
