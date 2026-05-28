@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/NeoHsu/asdf-redis-cli/compare/v1.1.0...v1.1.1) (2026-05-28)
+
+
+### Bug Fixes
+
+* support latest stable redis-cli installs ([fd00265](https://github.com/NeoHsu/asdf-redis-cli/commit/fd00265ccfe032a3e67d9f5a4f694dd43d7fc651))
+
 ## [1.1.0](https://github.com/NeoHsu/asdf-redis-cli/compare/v1.0.0...v1.1.0) (2025-10-02)
 
 
