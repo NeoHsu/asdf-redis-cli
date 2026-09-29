@@ -8,4 +8,13 @@ plugin_dir=$(dirname "$(dirname "$current_script_path")")
 # shellcheck source=lib/utils.bash
 source "${plugin_dir}/lib/utils.bash"
 
-list_all_versions | sort_versions | xargs echo
+# download.redis.io lists every historical tarball, including non-installable
+# legacy artifacts (redis-0.900_2, redis-1.1.90-beta, redis-2.2.105-scripting,
+# redis-beta-9, ...) that predate the modern 'make BUILD_TLS=yes redis-cli'
+# build and also mis-sort above real releases. Keep only clean releases and
+# modern release candidates (X.Y / X.Y.Z, optionally -rcN) so the list stays
+# installable while still exposing prereleases.
+list_all_versions |
+	grep -E '^[0-9]+(\.[0-9]+){1,2}(-rc[0-9]+)?$' |
+	sort_versions |
+	xargs echo
